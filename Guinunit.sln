@@ -1,0 +1,45 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{486F7AA7-077C-4422-9361-2CC6A15AE8E2}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guinunit", "Guinunit\Guinunit.csproj", "{205F9140-03A5-11E6-8164-0B7E503E349D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guinunit.Tests", "Guinunit.Tests\Guinunit.Tests.csproj", "{205FB851-03A5-11E6-8164-0B7E503E349D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		DebugLinux|Any CPU = DebugLinux|Any CPU
+		ReleaseLinux|Any CPU = ReleaseLinux|Any CPU
+		DebugWindows|Any CPU = DebugWindows|Any CPU
+		ReleaseWindows|Any CPU = ReleaseWindows|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{205F9140-03A5-11E6-8164-0B7E503E349D}.DebugLinux|Any CPU.ActiveCfg = DebugLinux|Any CPU
+		{205F9140-03A5-11E6-8164-0B7E503E349D}.DebugLinux|Any CPU.Build.0 = DebugLinux|Any CPU
+		{205F9140-03A5-11E6-8164-0B7E503E349D}.ReleaseLinux|Any CPU.ActiveCfg = ReleaseLinux|Any CPU
+		{205F9140-03A5-11E6-8164-0B7E503E349D}.ReleaseLinux|Any CPU.Build.0 = ReleaseLinux|Any CPU
+		{205F9140-03A5-11E6-8164-0B7E503E349D}.DebugWindows|Any CPU.ActiveCfg = DebugWindows|Any CPU
+		{205F9140-03A5-11E6-8164-0B7E503E349D}.DebugWindows|Any CPU.Build.0 = DebugWindows|Any CPU
+		{205F9140-03A5-11E6-8164-0B7E503E349D}.ReleaseWindows|Any CPU.ActiveCfg = ReleaseWindows|Any CPU
+		{205F9140-03A5-11E6-8164-0B7E503E349D}.ReleaseWindows|Any CPU.Build.0 = ReleaseWindows|Any CPU
+		{205FB851-03A5-11E6-8164-0B7E503E349D}.DebugLinux|Any CPU.ActiveCfg = DebugLinux|Any CPU
+		{205FB851-03A5-11E6-8164-0B7E503E349D}.DebugLinux|Any CPU.Build.0 = DebugLinux|Any CPU
+		{205FB851-03A5-11E6-8164-0B7E503E349D}.ReleaseLinux|Any CPU.ActiveCfg = ReleaseLinux|Any CPU
+		{205FB851-03A5-11E6-8164-0B7E503E349D}.ReleaseLinux|Any CPU.Build.0 = ReleaseLinux|Any CPU
+		{205FB851-03A5-11E6-8164-0B7E503E349D}.DebugWindows|Any CPU.ActiveCfg = DebugWindows|Any CPU
+		{205FB851-03A5-11E6-8164-0B7E503E349D}.DebugWindows|Any CPU.Build.0 = DebugWindows|Any CPU
+		{205FB851-03A5-11E6-8164-0B7E503E349D}.ReleaseWindows|Any CPU.ActiveCfg = ReleaseWindows|Any CPU
+		{205FB851-03A5-11E6-8164-0B7E503E349D}.ReleaseWindows|Any CPU.Build.0 = ReleaseWindows|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
