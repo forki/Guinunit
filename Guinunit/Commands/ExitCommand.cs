@@ -1,6 +1,6 @@
 ﻿using Eto.Forms;
 
-namespace Guinunit
+namespace Guinunit.Commands
 {
     public class ExitCommand : Command
     {

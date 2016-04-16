@@ -1,5 +1,6 @@
 using Eto.Forms;
-using Eto.Drawing;
+using Eto.Serialization.Xaml;
+using System;
 
 namespace Guinunit
 {
@@ -7,23 +8,12 @@ namespace Guinunit
     {
         public MainForm()
         {
-            ClientSize = new Size(600, 400);
-            Title = "Guinunit";
+            XamlReader.Load(this, "Guinunit.MainForm");
+        }
 
-            Menu = new MenuBar
-            {
-                Items =
-                {
-                    new ButtonMenuItem
-                    {
-                        Text = "&File",
-                        Items =
-                        {
-                            new ExitCommand()
-                        }
-                    }
-                }
-            };
+        protected void HandleClickMe(object sender, EventArgs e)
+        {
+            MessageBox.Show("I was clicked!");
         }
     }
 }

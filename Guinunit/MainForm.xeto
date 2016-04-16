@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form xmlns="http://schema.picoe.ca/eto.forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:cmd="clr-namespace:Guinunit.Commands;assembly=Guinunit"
+      Title="Guinunit"
+      ClientSize="400, 350">
+  <TableLayout>
+    <TableRow ScaleHeight="true">
+      <Splitter>
+        <Splitter.Panel1>
+          <ListBox>
+            <ListItem Text="Project.Test" />
+            <ListItem Text="Project.Test.Integration" />
+            <ListItem Text="Project.Test.SystemTest" />
+          </ListBox>
+        </Splitter.Panel1>
+        <Splitter.Panel2>
+          <TextArea />
+        </Splitter.Panel2>
+      </Splitter>
+    </TableRow>
+    <TableRow>
+      <Label Text="Completed" />
+    </TableRow>
+  </TableLayout>
+
+  <Form.Menu>
+    <MenuBar>
+      <ButtonMenuItem Text="&amp;File">
+        <cmd:ExitCommand MenuText="E&amp;xit" />
+      </ButtonMenuItem>
+    </MenuBar>
+  </Form.Menu>
+
+  <Form.ToolBar>
+    <ToolBar>
+      <ButtonToolItem Text="Click Me!" Click="HandleClickMe" />
+    </ToolBar>
+  </Form.ToolBar>
+</Form>
+

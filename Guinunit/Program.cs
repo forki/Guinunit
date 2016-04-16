@@ -8,6 +8,8 @@ namespace Guinunit
         [STAThread]
         public static void Main()
         {
+            AppDomain.CurrentDomain.UnhandledException += (_, e) => MessageBox.Show(e.ExceptionObject.ToString(), "Unexpected error", MessageBoxButtons.OK, MessageBoxType.Error);
+
             using (var application = new Application())
             using (var form = new MainForm())
                 application.Run(form);

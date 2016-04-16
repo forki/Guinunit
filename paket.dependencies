@@ -4,6 +4,8 @@ framework >= net45
 nuget Eto.Forms
 nuget Eto.Platform.Gtk3
 nuget Eto.Platform.Wpf
+nuget Eto.Serialization.Xaml
 nuget log4net
 nuget Moq
 nuget NUnit
+nuget NUnit.Engine
