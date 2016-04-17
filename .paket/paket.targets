@@ -14,6 +14,7 @@
     <!-- Paket command -->
     <PaketExePath Condition=" '$(PaketExePath)' == '' ">$(PaketToolsPath)paket.exe</PaketExePath>
     <PaketBootStrapperExePath Condition=" '$(PaketBootStrapperExePath)' == '' ">$(PaketToolsPath)paket.bootstrapper.exe</PaketBootStrapperExePath>
+    <PaketBootStrapperCommandArgs Condition=" '$(PaketBootStrapperCommandArgs)' == '' ">prerelease</PaketBootStrapperCommandArgs>
     <PaketCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketExePath)"</PaketCommand>
     <PaketCommand Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319 "$(PaketExePath)"</PaketCommand>
     <PaketBootStrapperCommand Condition=" '$(OS)' == 'Windows_NT'">"$(PaketBootStrapperExePath)" $(PaketBootStrapperCommandArgs)</PaketBootStrapperCommand>
