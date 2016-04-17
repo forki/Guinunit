@@ -2,3 +2,5 @@ Eto.Forms
 Eto.Serialization.Xaml
 log4net
 NUnit.Engine
+  exclude nunit-agent.exe
+  exclude nunit-agent-x86.exe

@@ -1,7 +1,6 @@
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
-  specs:
     Eto.Forms (2.2)
     Eto.Platform.Gtk3 (2.2)
       Eto.Forms (2.2)
