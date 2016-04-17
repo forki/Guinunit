@@ -3,10 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:cmd="clr-namespace:Guinunit.Commands;assembly=Guinunit"
       Title="Guinunit"
-      ClientSize="400, 350">
+      ClientSize="600,400">
   <TableLayout>
     <TableRow ScaleHeight="true">
-      <Splitter>
+      <Splitter Position="150" Width="3">
         <Splitter.Panel1>
           <ListBox>
             <ListItem Text="Project.Test" />
@@ -20,14 +20,19 @@
       </Splitter>
     </TableRow>
     <TableRow>
-      <Label Text="Completed" />
+      <Panel Padding="5">
+        <Label Text="Completed" />
+      </Panel>
     </TableRow>
   </TableLayout>
 
   <Form.Menu>
     <MenuBar>
       <ButtonMenuItem Text="&amp;File">
-        <cmd:ExitCommand MenuText="E&amp;xit" />
+        <cmd:ExitCommand />
+      </ButtonMenuItem>
+      <ButtonMenuItem Text="&amp;Help">
+        <cmd:AboutCommand />
       </ButtonMenuItem>
     </MenuBar>
   </Form.Menu>
