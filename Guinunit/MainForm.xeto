@@ -2,8 +2,7 @@
 <Form xmlns="http://schema.picoe.ca/eto.forms"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:cmd="clr-namespace:Guinunit.Commands;assembly=Guinunit"
-      Title="Guinunit"
-      ClientSize="600,400">
+      Title="Guinunit">
   <TableLayout>
     <TableRow ScaleHeight="true">
       <Splitter Position="150" Width="3">
