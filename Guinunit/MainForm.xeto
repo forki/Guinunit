@@ -15,7 +15,9 @@
           </ListBox>
         </Splitter.Panel1>
         <Splitter.Panel2>
-          <TextArea />
+          <TableLayout>
+            <TextArea />
+          </TableLayout>
         </Splitter.Panel2>
       </Splitter>
     </TableRow>
@@ -29,10 +31,10 @@
   <Form.Menu>
     <MenuBar>
       <ButtonMenuItem Text="&amp;File">
-        <ButtonMenuItem Text="E&amp;xit" Command="{cmd:ExitCommand}" />
+        <cmd:ExitCommand />
       </ButtonMenuItem>
       <ButtonMenuItem Text="&amp;Help">
-        <ButtonMenuItem Text="&amp;About" Command="{cmd:AboutCommand}" />
+        <cmd:AboutCommand />
       </ButtonMenuItem>
     </MenuBar>
   </Form.Menu>
