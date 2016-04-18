@@ -56,6 +56,14 @@ namespace Guinunit.Utilities
             set { SetValue(value); }
         }
 
+        [UserScopedSetting]
+        [DefaultSettingValue("250")]
+        public GridLength TestCasesTreeWidth
+        {
+            get { return GetValue<GridLength>(); }
+            set { SetValue(value); }
+        }
+
         private T GetValue<T>([CallerMemberName] string key = "")
         {
             return (T)this[key];
