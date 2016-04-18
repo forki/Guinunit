@@ -1,6 +1,4 @@
-Eto.Forms
-Eto.Serialization.Xaml
-log4net
+﻿MyToolkit
 NUnit.Engine
   exclude nunit-agent.exe
   exclude nunit-agent-x86.exe
