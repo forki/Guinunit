@@ -32,36 +32,23 @@ namespace Guinunit
         {
             if (UserSettings.Default.WindowSize.IsEmpty)
             {
+                Bounds = new Rectangle(new Point(100, 100), new Size(600, 400));
                 WindowState = WindowState.Normal;
-                Location = new Point(100, 100);
-                Size = new Size(600, 400);
             }
             else
             {
+                Bounds = new Rectangle(UserSettings.Default.WindowLocation, UserSettings.Default.WindowSize);
                 WindowState = UserSettings.Default.WindowState;
-
-                if (WindowState == WindowState.Minimized)
-                    WindowState = WindowState.Normal;
-
-                Location = UserSettings.Default.WindowLocation;
-                Size = UserSettings.Default.WindowSize;
             }
         }
 
         private void SaveSettings()
         {
-            UserSettings.Default.WindowState = WindowState;
+            var bounds = WindowState != WindowState.Normal ? RestoreBounds : Bounds;
 
-            if (WindowState == WindowState.Normal)
-            {
-                UserSettings.Default.WindowLocation = Location;
-                UserSettings.Default.WindowSize = Size;
-            }
-            else
-            {
-                UserSettings.Default.WindowLocation = RestoreBounds.Location;
-                UserSettings.Default.WindowSize = RestoreBounds.Size;
-            }
+            UserSettings.Default.WindowState = WindowState;
+            UserSettings.Default.WindowLocation = bounds.Location;
+            UserSettings.Default.WindowSize = bounds.Size;
 
             UserSettings.Default.Save();
         }

@@ -13,6 +13,7 @@ namespace Guinunit
         private const string WINDOW_SIZE = "WindowSize";
 
         [UserScopedSetting]
+        [DefaultSettingValue("")]
         public WindowState WindowState
         {
             get { return (WindowState) this[WINDOW_STATE]; }
@@ -20,6 +21,7 @@ namespace Guinunit
         }
 
         [UserScopedSetting]
+        [DefaultSettingValue("")]
         public Point WindowLocation
         {
             get { return (Point) this[WINDOW_LOCATION]; }
@@ -27,9 +29,10 @@ namespace Guinunit
         }
 
         [UserScopedSetting]
+        [DefaultSettingValue("")]
         public Size WindowSize
         {
-            get { return (Size)this[WINDOW_SIZE]; }
+            get { return (Size) this[WINDOW_SIZE]; }
             set { this[WINDOW_SIZE] = value; }
         }
     }
