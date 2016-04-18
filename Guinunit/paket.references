@@ -1,4 +1,5 @@
-﻿MyToolkit
+﻿FontAwesome.WPF
+MyToolkit
 NUnit.Engine
   exclude nunit-agent.exe
   exclude nunit-agent-x86.exe

@@ -4,6 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:m="clr-namespace:Guinunit.Models"
+        xmlns:vwm="clr-namespace:Guinunit.ViewModels"
         mc:Ignorable="d"
         Title="Guinunit"
         Left="{Binding UserSettings.WindowLeft, Mode=TwoWay}"
@@ -12,34 +15,176 @@
         Width="{Binding UserSettings.WindowWidth, Mode=TwoWay}"
         WindowState="{Binding UserSettings.WindowState, Mode=TwoWay}"
         Closing="OnClosing">
+    <Window.DataContext>
+        <vwm:MainWindowModel />
+    </Window.DataContext>
     <Window.Resources>
-        <vwm:MainWindowModel x:Key="ViewModel" xmlns:vwm="clr-namespace:Guinunit.ViewModels" />
+        <Style x:Key="EnabledStyle" TargetType="{x:Type fa:ImageAwesome}">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.1" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="RunCommandStyle" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsRunningTests}" Value="True">
+                    <Setter Property="Command" Value="{Binding StopTestsCommand}" />
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <fa:ImageAwesome Icon="MinusCircle" Width="16" Foreground="Red" Style="{StaticResource EnabledStyle}" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ToolTip" Value="Stop running tests" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsRunningTests}" Value="False">
+                    <Setter Property="Command" Value="{Binding RunTestsCommand}" />
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <fa:ImageAwesome Icon="ToggleRight" Width="16" Foreground="LimeGreen" Style="{StaticResource EnabledStyle}" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ToolTip" Value="Run unit tests" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="E_xit" Command="{Binding ExitCommand, Source={StaticResource ViewModel}}" />
+                <MenuItem Header="E_xit" Command="{Binding ExitCommand}">
+                    <MenuItem.Icon>
+                        <fa:ImageAwesome Icon="SignOut" Height="12" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="_About" Command="{Binding AboutCommand, Source={StaticResource ViewModel}}" />
+                <MenuItem Header="_About" Command="{Binding AboutCommand}">
+                    <MenuItem.Icon>
+                        <fa:ImageAwesome Icon="LightbulbOutline" Height="12" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
-        <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem>Completed</StatusBarItem>
-        </StatusBar>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="3" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <ListBox Grid.Column="0">
-                <ListBoxItem>Project.Test</ListBoxItem>
-                <ListBoxItem>Project.Test.Integration</ListBoxItem>
-                <ListBoxItem>Project.Test.SystemTest</ListBoxItem>
-            </ListBox>
-            <GridSplitter Grid.Column="1" />
-            <TextBox Grid.Column="2" />
-        </Grid>
+        <DockPanel>
+            <ToolBarTray DockPanel.Dock="Top" IsLocked="True">
+                <ToolBar>
+                    <Button ToolTip="Add assembly" Command="{Binding AddAssemblyCommand}">
+                        <fa:ImageAwesome Icon="PlusSquare" Width="16" Foreground="DarkGreen" />
+                    </Button>
+                    <Separator />
+                    <Button IsEnabled="{Binding HasTestCases}" Style="{StaticResource RunCommandStyle}" />
+                    <Separator />
+                    <Button ToolTip="Add custom filters to select running tests ..." Command="{Binding EditFilterCommand}">
+                        <fa:ImageAwesome Icon="Filter" Width="16" Foreground="DarkGreen" />
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem>
+                    <TextBlock>Completed</TextBlock>
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="1">
+                    <TextBlock>Test Cases: <TextBlock Text="{Binding TotalCount}" /></TextBlock>
+                </StatusBarItem>
+                <Separator Grid.Column="2" />
+                <StatusBarItem Grid.Column="3">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="ThumbsOutlineUp" Foreground="Green" Width="10" />
+                        <TextBlock Text="{Binding PassedCount}" Margin="5,0,0,0" />
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="4" />
+                <StatusBarItem Grid.Column="5">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="HandStopOutline" Foreground="Orange" Width="10" />
+                        <TextBlock Text="{Binding SkippedCount}" Margin="5,0,0,0" />
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="6" />
+                <StatusBarItem Grid.Column="7">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="ThumbsOutlineDown" Foreground="Red" Width="10" />
+                        <TextBlock Text="{Binding FailedCount}" Margin="5,0,0,0" />
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="8" />
+                <StatusBarItem Grid.Column="9">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="ClockOutline" Width="10" />
+                        <TextBlock Text="{Binding Duration}" Margin="5,0,0,0" />
+                    </StackPanel>
+                </StatusBarItem>
+            </StatusBar>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="3" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TreeView x:Name="testCases" ItemsSource="{Binding TestCases}">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type m:TestCase}" ItemsSource="{Binding TestCases}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:ImageAwesome x:Name="icon" Margin="0,0,5,0" Width="10" />
+                                <TextBlock Text="{Binding Name}" />
+                            </StackPanel>
+                            <HierarchicalDataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Path=Status}" Value="{x:Static m:TestCaseStatus.NotRun}">
+                                    <Setter TargetName="icon" Property="Icon" Value="ExclamationCircle" />
+                                    <Setter TargetName="icon" Property="Foreground" Value="CornflowerBlue" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Status}" Value="{x:Static m:TestCaseStatus.Skipped}">
+                                    <Setter TargetName="icon" Property="Icon" Value="HandStopOutline" />
+                                    <Setter TargetName="icon" Property="Foreground" Value="Orange" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Status}" Value="{x:Static m:TestCaseStatus.Passed}">
+                                    <Setter TargetName="icon" Property="Icon" Value="ThumbsOutlineUp" />
+                                    <Setter TargetName="icon" Property="Foreground" Value="Green" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Status}" Value="{x:Static m:TestCaseStatus.Failed}">
+                                    <Setter TargetName="icon" Property="Icon" Value="ThumbsOutlineDown" />
+                                    <Setter TargetName="icon" Property="Foreground" Value="Red" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Status}" Value="{x:Static m:TestCaseStatus.Running}">
+                                    <Setter TargetName="icon" Property="Spin" Value="True" />
+                                    <Setter TargetName="icon" Property="Icon" Value="CircleOutlineNotch" />
+                                    <Setter TargetName="icon" Property="Foreground" Value="CornflowerBlue" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Status}" Value="{x:Static m:TestCaseStatus.Cancelled}">
+                                    <Setter TargetName="icon" Property="Icon" Value="Unlink" />
+                                    <Setter TargetName="icon" Property="Foreground" Value="Black" />
+                                </DataTrigger>
+                            </HierarchicalDataTemplate.Triggers>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+                <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" />
+                <TextBox IsReadOnly="True" Grid.Column="2" Text="{Binding ElementName=testCases, Path=SelectedItem.Message}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+            </Grid>
+        </DockPanel>
     </DockPanel>
 </Window>
