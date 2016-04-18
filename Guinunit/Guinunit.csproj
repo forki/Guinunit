@@ -43,6 +43,7 @@
     <Compile Include="MainForm.xeto.cs">
       <DependentUpon>MainForm.xeto</DependentUpon>
     </Compile>
+    <Compile Include="UserSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
