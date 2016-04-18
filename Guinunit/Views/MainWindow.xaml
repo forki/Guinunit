@@ -136,7 +136,7 @@
             </StatusBar>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="{Binding UserSettings.TestCasesTreeWidth, Mode=TwoWay}" />
                     <ColumnDefinition Width="3" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
