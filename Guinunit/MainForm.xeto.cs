@@ -8,7 +8,7 @@ namespace Guinunit
     {
         public MainForm()
         {
-            XamlReader.Load(this, "Guinunit.MainForm");
+            XamlReader.Load(this);
         }
 
         protected void HandleClickMe(object sender, EventArgs e)

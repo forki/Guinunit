@@ -1,8 +1,4 @@
 Eto.Forms
-Eto.Platform.Gtk3
-  exclude Eto.Gtk3.dll
-Eto.Platform.Wpf
-  exclude Eto.Wpf.dll
 Eto.Serialization.Xaml
 log4net
 NUnit.Engine

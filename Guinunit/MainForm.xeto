@@ -29,10 +29,10 @@
   <Form.Menu>
     <MenuBar>
       <ButtonMenuItem Text="&amp;File">
-        <cmd:ExitCommand />
+        <ButtonMenuItem Text="E&amp;xit" Command="{cmd:ExitCommand}" />
       </ButtonMenuItem>
       <ButtonMenuItem Text="&amp;Help">
-        <cmd:AboutCommand />
+        <ButtonMenuItem Text="&amp;About" Command="{cmd:AboutCommand}" />
       </ButtonMenuItem>
     </MenuBar>
   </Form.Menu>
