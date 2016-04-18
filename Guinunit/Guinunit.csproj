@@ -63,9 +63,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Messages\OpenTestModuleMessage.cs" />
     <Compile Include="Models\TestCase.cs" />
     <Compile Include="Models\TestCaseStatus.cs" />
     <Compile Include="Models\TestModule.cs" />
+    <Compile Include="Utilities\CursorHelper.cs" />
+    <Compile Include="Utilities\CursorRestoreHandle.cs" />
+    <Compile Include="Utilities\TestManager.cs" />
     <Compile Include="Utilities\UserSettings.cs" />
     <Compile Include="ViewModels\MainWindowModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
