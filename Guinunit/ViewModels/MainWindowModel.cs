@@ -18,6 +18,7 @@ namespace Guinunit.ViewModels
     public class MainWindowModel : ViewModelBase, ITestRunnerTarget
     {
         private readonly IList<TestModule> testAssemblies = new List<TestModule>();
+        private readonly TestRunnerAgent testRunnerAgent;
 
         private bool isRunningTests;
         private TimeSpan duration;
@@ -67,6 +68,8 @@ namespace Guinunit.ViewModels
             set { Set(ref totalCount, value); }
         }
 
+        public RelayCommand RunTestsCommand { get; }
+        public RelayCommand StopTestsCommand { get; }
         public RelayCommand AboutCommand { get; } = new RelayCommand(() => MessageBox.Show("A very basic GUI for NUnit 3", "About Guinunit", MessageBoxButton.OK, MessageBoxImage.Information));
         public RelayCommand ExitCommand { get; } = new RelayCommand(Application.Current.Shutdown);
 
@@ -75,8 +78,10 @@ namespace Guinunit.ViewModels
         public MainWindowModel()
         {
             TestCases.CollectionChanged += OnTestCasesCollectionChanged;
-
+            testRunnerAgent = new TestRunnerAgent(this);
             AddAssemblyCommand = new AsyncRelayCommand(AddTestModuleAsync);
+            RunTestsCommand = new RelayCommand(() => testRunnerAgent.StartTests(testAssemblies));
+            StopTestsCommand = new RelayCommand(() => testRunnerAgent.Cancel());
         }
 
         private void OnTestCasesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -114,7 +119,7 @@ namespace Guinunit.ViewModels
 
                 var filter = TestManager.CreateFilter(node);
                 testAssemblies.Add(new TestModule(result.Result, filter, testCaseLookup, null));
-                TotalCount = totalCount + Convert.ToInt32(node.Attributes.GetNamedItem("testcasecount").Value);
+                TotalCount = totalCount + Convert.ToInt32(node.Attributes?.GetNamedItem("testcasecount").Value ?? "0");
 
                 TestCases.Add(await task);
             }
