@@ -15,7 +15,7 @@ using System.Windows;
 
 namespace Guinunit.ViewModels
 {
-    public class MainWindowModel : ViewModelBase
+    public class MainWindowModel : ViewModelBase, ITestRunnerTarget
     {
         private readonly IList<TestModule> testAssemblies = new List<TestModule>();
 

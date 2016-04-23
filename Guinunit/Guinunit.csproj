@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Guinunit</RootNamespace>
     <AssemblyName>Guinunit</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -70,6 +70,7 @@
     <Compile Include="Utilities\CursorHelper.cs" />
     <Compile Include="Utilities\CursorRestoreHandle.cs" />
     <Compile Include="Utilities\TestManager.cs" />
+    <Compile Include="Utilities\TestRunnerAgent.cs" />
     <Compile Include="Utilities\UserSettings.cs" />
     <Compile Include="ViewModels\MainWindowModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -140,7 +141,7 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.5'">
       <ItemGroup>
         <Reference Include="Mono.Cecil">
           <HintPath>..\packages\NUnit.Engine\lib\Mono.Cecil.dll</HintPath>
