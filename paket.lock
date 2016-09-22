@@ -2,5 +2,5 @@ FRAMEWORK: >= NET461
 NUGET
   remote: https://www.nuget.org/api/v2
     FontAwesome.WPF (4.5.0.8)
-    MyToolkit (2.5.12)
-    NUnit.Engine (3.2.1)
+    MyToolkit (2.5.13)
+    NUnit.Engine (3.4.1)

@@ -5,8 +5,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Guinunit.Models;
+using NUnit;
 using NUnit.Engine;
-using NUnit.Engine.Internal;
 using NUnit.Engine.Runners;
 
 namespace Guinunit.Utilities
@@ -213,6 +213,7 @@ namespace Guinunit.Utilities
 
                 var result = node.Attributes.GetNamedItem("result").Value;
 
+                TestState.
                 switch (result)
                 {
                     case "Skipped":
